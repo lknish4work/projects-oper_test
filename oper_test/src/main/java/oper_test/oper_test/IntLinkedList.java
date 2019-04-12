@@ -70,6 +70,7 @@ public class IntLinkedList
         		prev_Node = curr_Node;
         	else
         	{
+        		//last node to remove
         		tail = prev_Node;
         		removed_Node = curr_Node;
         		if(prev_Node != null)
@@ -95,6 +96,7 @@ public class IntLinkedList
         {
         	if(curr_Node.data == data)
         	{
+        		//found node to remove
         		removed_Node = curr_Node;
         		if(head == removed_Node)
         			head = curr_Node.next;
@@ -108,6 +110,7 @@ public class IntLinkedList
         	}
         	else
         	{
+        		//go to next node
         		prev_Node = curr_Node;
         		curr_Node = curr_Node.next;
         	}
