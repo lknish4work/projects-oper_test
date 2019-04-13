@@ -1,7 +1,7 @@
 package oper_test.oper_test;
 
 /**
- * Hello world!
+ * IntLinkedList
  *
  */
 public class IntLinkedList
@@ -62,7 +62,7 @@ public class IntLinkedList
     { 
         Node curr_Node = head;
         Node prev_Node = null; 
-        Node removed_Node = null; 
+        Node removed_Node = null;
  
         while (curr_Node != null)
         {
@@ -86,6 +86,7 @@ public class IntLinkedList
         return removed_Node;
     }
     
+    //Removes first node with data provided.
     public Node deleteDataNode(int data)
     { 
         Node curr_Node = head;
@@ -116,7 +117,7 @@ public class IntLinkedList
         	}
        }
         
-        if(size > 0)
+        if(size > 0 && removed_Node != null)
         	size--;
         return removed_Node;
     }
@@ -124,33 +125,38 @@ public class IntLinkedList
     public static void main(String[] args)
     { 
     	IntLinkedList intlist = new IntLinkedList();
-
-    	intlist.append(1);
-    	System.out.println("INIT: " + intlist.toString());
+    	Node d_node = null;
     	
-    	intlist.deleteTailNode();
-    	System.out.println("Delete Tail: " + intlist.toString());
+    	intlist.append(1);
+    	System.out.println("APPEND '1': \n" + intlist.toString());
+    	
+    	d_node = intlist.deleteTailNode();
+    	System.out.println("DELETE Tail: \n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
     	
     	intlist.append(1);
     	intlist.append(2);
     	intlist.append(3);
     	intlist.append(4);
-    	System.out.println("INIT: " + intlist.toString());
+    	System.out.println("APPEND Data: '1,2,3,4': \n" + intlist.toString());
 
-    	intlist.deleteTailNode();
-    	System.out.println("Delete Tail: " + intlist.toString());
+    	d_node = intlist.deleteTailNode();
+    	System.out.println("DELETE Tail: \n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
     	
-    	intlist.deleteDataNode(2);
-    	System.out.println("Delete Data '2': " + intlist.toString());
-    	intlist.deleteDataNode(1);
-    	System.out.println("Delete Data '1': " + intlist.toString());
-    	intlist.deleteDataNode(3);
-    	System.out.println("Delete Data '3': " + intlist.toString());
+    	d_node = intlist.deleteDataNode(2);
+    	System.out.println("DELETE Data: '2'\n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
+    	d_node = intlist.deleteDataNode(1);
+    	System.out.println("DELETE Data: '1'\n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
+    	intlist.append(8);
+    	System.out.println("APPEND Data: '8'\n" + intlist.toString());
+    	d_node = intlist.deleteDataNode(3);
+    	System.out.println("DELETE Data: '3'\n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
     	
     	intlist.append(5);
     	intlist.append(6);
-    	System.out.println("INIT: " + intlist.toString());
+    	System.out.println("APPEND data: '5,6':\n" + intlist.toString());
     	
+    	d_node = intlist.deleteDataNode(30);
+    	System.out.println("DELETE Data: '30'\n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
     }
     
 }
