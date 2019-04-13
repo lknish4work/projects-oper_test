@@ -122,11 +122,50 @@ public class IntLinkedList
         return removed_Node;
     }
     
+    //Removes all nodes with data that is grater then provided.
+    public IntLinkedList deleteGraterDataNodes(int data)
+    { 
+        Node curr_Node = head;
+        Node prev_Node = null; 
+        Node removed_Node = null;
+        IntLinkedList removedNodeList = new IntLinkedList();
+ 
+        while (curr_Node != null)
+        {
+        	if(curr_Node.data > data)
+        	{
+        		//found node to remove
+        		removed_Node = curr_Node;
+        		if(head == removed_Node)
+        			head = curr_Node.next;
+        		if(tail == removed_Node)
+        			tail = prev_Node;
+        		if(prev_Node != null)
+        			prev_Node.next = curr_Node.next;
+
+               if(size > 0 && removed_Node != null)
+                	size--;
+               removedNodeList.append(removed_Node.data);
+        	}
+        	else
+        	{
+        		//go to next node
+        		prev_Node = curr_Node;
+        	}
+        	
+        	curr_Node = curr_Node.next;
+       }
+        
+        return removedNodeList;
+    }
+    
+    
     public static void main(String[] args)
     { 
     	IntLinkedList intlist = new IntLinkedList();
     	Node d_node = null;
-    	
+    	IntLinkedList d_nodeList = null;
+    			
     	intlist.append(1);
     	System.out.println("APPEND '1': \n" + intlist.toString());
     	
@@ -144,19 +183,18 @@ public class IntLinkedList
     	
     	d_node = intlist.deleteDataNode(2);
     	System.out.println("DELETE Data: '2'\n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
-    	d_node = intlist.deleteDataNode(1);
-    	System.out.println("DELETE Data: '1'\n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
+
     	intlist.append(8);
-    	System.out.println("APPEND Data: '8'\n" + intlist.toString());
-    	d_node = intlist.deleteDataNode(3);
-    	System.out.println("DELETE Data: '3'\n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
-    	
     	intlist.append(5);
     	intlist.append(6);
-    	System.out.println("APPEND data: '5,6':\n" + intlist.toString());
+    	System.out.println("APPEND data: '8,5,6':\n" + intlist.toString());
     	
     	d_node = intlist.deleteDataNode(30);
     	System.out.println("DELETE Data: '30'\n" + intlist.toString() + " Deleted Node - " + (d_node==null?"N/A":d_node.data));
+ 
+    	d_nodeList = intlist.deleteGraterDataNodes(5);
+    	System.out.println("DELETE Grater: '5'\n" + intlist.toString()+ " Deleted Nodes - " + d_nodeList.toString());
+
     }
     
 }
